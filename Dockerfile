@@ -11,7 +11,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 # Copy Package.json then initialize build
 
-COPY package.json /home/node/
+COPY latest.package.json /opt/app/
 COPY compile_container.sh /tmp/
 
 RUN /tmp/compile_container.sh
