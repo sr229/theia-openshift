@@ -15,6 +15,7 @@ apk add \
     bash \
     gettext \
     wget \
+    su-exec \
     git \
     curl \
     go \
@@ -31,9 +32,13 @@ apk add \
 
 # perform NPM override and install Theia CLI
 
-npm i -g npm@4 @theia/cli@latest
+echo '--- BEGIN NPM Override + Theia CLI install ---'
+
+su-exec node npm i -g npm@4 @theia/cli@latest
 
 # perform initial package acquires for core Go packages
+
+echo '--- BEGIN GoLang Core Libraries Cache ---'
 
 go get -u -v github.com/ramya-rao-a/go-outline
 go get -u -v github.com/acroca/go-symbols
@@ -52,10 +57,12 @@ go get -u -v github.com/josharian/impl
 go get -u -v github.com/haya14busa/goplay/cmd/goplay
 
 # Create User
+echo '--- BEGIN NOPASSWD Override ---'
 
 echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user
 chmod 0440 /etc/sudoers.d/user
 
+echo '--- DONE NOPASSWD Override ---'
 
 # Build Theia and chmod dirs
 echo ' --- BEGIN IDE INSTALL ---'
