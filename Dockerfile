@@ -1,6 +1,6 @@
 # Theia image - Dockerfile
 # Copyright 2018 (c) Ayane "Capuccino" Satomi
-FROM nodejs:alpine
+FROM nodejs:8.9.4-alpine
 MAINTAINER Ayane Satomi <enra@headbow.stream>
 
 
