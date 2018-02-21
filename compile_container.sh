@@ -11,7 +11,7 @@ apk upgrade;
 
 # perform initial workspace required runtimes installations
 
-apk install \
+apk add \
     bash \
     gettext \
     wget \
