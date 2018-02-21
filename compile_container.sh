@@ -15,6 +15,7 @@ apk install \
     bash \
     gettext \
     wget \
+    git \
     curl \
     go \
     python \
@@ -23,7 +24,10 @@ apk install \
     ffmpeg \
     tar \
     sudo \
-    openjdk8;
+    openjdk8 \
+    openssh-client \
+    openssh-server \
+    gnupg;
 
 # perform NPM override and install Theia CLI
 
