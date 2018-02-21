@@ -23,4 +23,5 @@ COPY passwd_template /tmp/
 EXPOSE 3000
 VOLUME /workspace
 ENV SHELL /bin/bash
+WORKDIR /workspace
 CMD ["/bin/sh", "-c", "/tmp/run_container.sh"]
