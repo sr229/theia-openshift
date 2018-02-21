@@ -66,8 +66,9 @@ echo '--- DONE NOPASSWD Override ---'
 
 # Build Theia and chmod dirs
 echo ' --- BEGIN IDE INSTALL ---'
-cd /home/node && \
-   theia build;
+mkdir -p /opt/app && \
+      cd /opt/app && \
+          theia build;
 
 mkdir -p /workspace
 chown -R node:root /workspace
@@ -76,3 +77,6 @@ chmod -R g+rw /home/node
 chmod -R g+rw /workspace
 find /home/node -type d -exec chmod g+x {} +
 
+echo '-- POSTINSTALL Remove un-needed packages ---'
+apk del su-exec \
+echo '-- Script Done. ---'
