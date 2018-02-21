@@ -78,5 +78,5 @@ chmod -R g+rw /workspace
 find /home/node -type d -exec chmod g+x {} +
 
 echo '-- POSTINSTALL Remove un-needed packages ---'
-apk del su-exec \
-echo '-- Script Done. ---'
+apk del su-exec && \
+echo '-- Script Done. ---';
