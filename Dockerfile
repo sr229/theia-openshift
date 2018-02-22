@@ -118,7 +118,7 @@ RUN adduser --disabled-password --gecos '' theia && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers;
 
 RUN chmod g+rw /home/theia && \
-    chown -R user:user /home/theia;
+    chown -R theia:theia /home/theia;
     
 ARG version=latest
 WORKDIR /home/theia
