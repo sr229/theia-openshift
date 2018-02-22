@@ -57,6 +57,10 @@ go get -u -v golang.org/x/tools/cmd/guru
 go get -u -v github.com/josharian/impl
 go get -u -v github.com/haya14busa/goplay/cmd/goplay
 
+echo '--- BEGIN Install Python LSP and linters ---'
+
+pip install flake8 pep8 python-language-server
+
 # Create User
 echo '--- BEGIN NOPASSWD Override ---'
 
