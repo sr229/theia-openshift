@@ -21,6 +21,7 @@ apk add \
     go \
     python \
     python3 \
+    py-pip \
     build-base \
     ffmpeg \
     tar \
