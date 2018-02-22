@@ -103,7 +103,10 @@ RUN add-apt-repository ppa:webupd8team/java \
   && apt-get install -y oracle-java8-installer
 
 #C/C++
-RUN apt-get update && apt-get install -y clang clangd
+RUN apt-get update && apt-get install -y clang-5.0
+RUN sudo update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-5.0 100 && \
+    sudo update-alternatives --install /usr/bin/clang clang /usr/bin/clang-5.0 100 && \
+    sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-5.0 100;
 
 #Python
 RUN apt-get update && apt-get install -y python python-pip
