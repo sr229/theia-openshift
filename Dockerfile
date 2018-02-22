@@ -114,7 +114,7 @@ RUN pip install python-language-server
 
 #Theia
 ##Needed for node-gyp, nsfw build
-RUN apt-get update && apt-get install -y python python3 python3-pip build-essential
+RUN apt-get update && apt-get install -y sudo python python3 python3-pip build-essential
 
 RUN adduser --disabled-password --gecos '' theia && \
     adduser theia sudo && \
