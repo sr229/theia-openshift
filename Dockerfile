@@ -11,7 +11,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
 # Copy Package.json then initialize build
 
-ADD package.json /opt/app/
+ADD package.json /opt/app/package.json
 ADD compile_container.sh /tmp/
 
 RUN /tmp/compile_container.sh
@@ -24,4 +24,5 @@ EXPOSE 3000
 ENV SHELL /bin/bash
 WORKDIR /workspace
 VOLUME /workspace
+USER 1000
 CMD ["/bin/sh", "-c", "/tmp/run_container.sh"]
