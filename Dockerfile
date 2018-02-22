@@ -103,8 +103,6 @@ RUN add-apt-repository ppa:webupd8team/java \
   && apt-get install -y oracle-java8-installer
 
 #C/C++
-RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" > /etc/apt/sources.list.d/llvm.list
 RUN apt-get update && apt-get install -y clang-tools-6.0
 RUN ln -s /usr/bin/clangd-6.0 /usr/bin/clangd
 
