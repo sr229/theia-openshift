@@ -34,7 +34,7 @@ apk add \
 
 echo '--- BEGIN NPM Override + Theia CLI install ---'
 
-su-exec node npm i -g npm@4 @theia/cli@latest
+su-exec node npm i -g npm@4 @theia/cli@next
 
 # perform initial package acquires for core Go packages
 
