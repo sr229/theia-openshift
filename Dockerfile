@@ -70,7 +70,7 @@ RUN set -ex \
 ##GO
 
 #Required to use go get with git source
-RUN apt-get update && apt-get upgrade && apt-get install -y git
+RUN apt-get update && apt-get -y upgrade && apt-get install -y git
 
 ENV GO_VERSION 1.9.2
 ENV GOPATH=/usr/local/go-packages
