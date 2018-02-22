@@ -73,7 +73,8 @@ echo '--- DONE NOPASSWD Override ---'
 echo ' --- BEGIN IDE INSTALL ---'
 mkdir -p /opt/app && \
       cd /opt/app && \
-          theia build;
+      npm i --save && \
+            theia build;
 
 mkdir -p /workspace
 chown -R node:root /workspace
