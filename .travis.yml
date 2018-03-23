@@ -12,23 +12,17 @@ git:
 
 language: generic
 
-env:
-  - NPM_TAG=latest IMAGE_NAME=theia
-  - NPM_TAG=next IMAGE_NAME=theia
 
 install:
-  - cd "$IMAGE_NAME-docker"
-  - IMAGE="chinodesuuu/$IMAGE_NAME"
-  - IMAGE_TAG="$IMAGE":$(npm view "@theia/core@$NPM_TAG" version)
-  - echo $IMAGE_TAG
-  - travis_wait docker build --build-arg "version=$NPM_TAG" . -t "$IMAGE_TAG" --no-cache
-  - docker tag "$IMAGE_TAG" "$IMAGE:$NPM_TAG"
+
+  - docker build . -t chinodesuuu/theia:latest --no-cache
+  - docker tag chinodesuuu/theia:latest
 
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 deploy:
   provider: script
-  script: docker push "$IMAGE"
+  script: docker push chinodesuuu/theia:latest
   on:
     branch: master
   skip_cleanup: true
@@ -36,4 +30,4 @@ deploy:
 notifications:
   on_success: change
   on_failure: always
-on_start: never
+  on_start: never
