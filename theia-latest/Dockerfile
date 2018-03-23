@@ -1,11 +1,5 @@
 FROM theiaide/theia:latest
 
-#C/C++
-RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list
-RUN apt-get update && apt-get install -y clang-tools-6.0
-RUN ln -s /usr/bin/clangd-6.0 /usr/bin/clangd
-
 #Python 2
 RUN apt-get update && apt-get install -y python python-pip && \
  pip install python-language-server;
@@ -36,5 +30,5 @@ RUN apt-get update && apt-get -y upgrade
 VOLUME /home
 WORKDIR /home/theia
 EXPOSE 3000
-
+USER 1000
 CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
