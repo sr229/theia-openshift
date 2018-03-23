@@ -18,18 +18,11 @@ jobs:
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
       - run:
-          name: Build Clara (Alpine Nightly)
-          command: docker build -t claritymoe/clara:alpine-nightly ./Clara-Alpine-Nightly          
+          name: Build (Theia Latest)
+          command: docker build -t chinodesuuu/theia:latest ./theia-latest
       - run:
-          name: Build Clara (Alpine)
-          command: docker build -t claritymoe/clara:alpine ./Clara-Alpine            
-          
-      - run:
-          name: Build Clara (Ubuntu)
-          command: docker build -t claritymoe/clara:ubuntu ./Clara-Ubuntu
-      - run:
-          name: Build Clara (Ubuntu)
-          command: docker build -t claritymoe/clara:ubuntu-nightly ./Clara-Ubuntu-Nightly
+          name: Build (Theia Next)
+          command: docker build -t chinodesuuu/theia:next ./theia-next
   deploy:
     docker:
       - image: chinodesuuu/ci-amethyst:latest
