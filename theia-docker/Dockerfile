@@ -141,7 +141,7 @@ ARG version=latest
 WORKDIR /home/theia
 VOLUME /home
 COPY $version.package.json ./package.json
-RUN yarn install @theia/cli@$version && yarn --cache-folder ./ycache && rm -rf ./ycache
+RUN yarn add @theia/cli@$version && yarn --cache-folder ./ycache && rm -rf ./ycache
 RUN yarn theia build
 EXPOSE 3000
 ENV SHELL /bin/bash
