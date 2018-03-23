@@ -101,9 +101,9 @@ RUN add-apt-repository ppa:webupd8team/java \
 
 #C/C++
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
-RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" > /etc/apt/sources.list.d/llvm.list
-RUN apt-get update && apt-get install -y clang-tools-5.0
-RUN ln -s /usr/bin/clangd-5.0 /usr/bin/clangd
+RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-6.0 main" > /etc/apt/sources.list.d/llvm.list
+RUN apt-get update && apt-get install -y clang-tools-6.0
+RUN ln -s /usr/bin/clangd-6.0 /usr/bin/clangd
 
 #Python 2
 RUN apt-get update && apt-get install -y python python-pip && \
