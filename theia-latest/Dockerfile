@@ -13,8 +13,8 @@ RUN apk update && \
 
     
 # Create user
-echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user
-chmod 0440 /etc/sudoers.d/user
+RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
+          chmod 0440 /etc/sudoers.d/user;
     
 ## Explicit allow access
 RUN chmod g+rw /home/* && \
