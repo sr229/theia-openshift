@@ -136,7 +136,7 @@ RUN apt-get update && apt-get -y upgrade
 
 ##Needed for node-gyp, nsfw build
 RUN apt-get update && apt-get install -y python build-essential
-ENV version=$NPM_TAG
+ENV version=next
 WORKDIR /home/theia
 VOLUME /home
 ADD $version.package.json ./package.json
