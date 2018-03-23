@@ -1,24 +1,20 @@
 FROM theiaide/theia:latest
 
-#Python 2
-RUN apt-get update && apt-get install -y python python-pip && \
- pip install python-language-server;
- 
-#Python 3
-RUN add-apt-repository ppa:jonathonf/python-3.6 && \
-    apt-get update && \
-    apt-get install -y python3.6
+
+RUN apk update && \
+    apk upgrade  && \
+    apk add \
+    python \
+    python3 \
+    clang \
+    openjdk8-jre-base  \
+    sudo;
+
+
     
-#Developer tools
-
-## Git and sudo (sudo needed for user override)
-RUN apt-get -y install git sudo
-
-#OpenShift compatibility
-## User account
-RUN adduser --disabled-password --gecos '' theia && \
-    adduser theia sudo && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers;
+# Create user
+echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user
+chmod 0440 /etc/sudoers.d/user
     
 ## Explicit allow access
 RUN chmod g+rw /home/* && \
