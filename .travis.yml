@@ -15,14 +15,14 @@ language: generic
 
 install:
 
-  - docker build . -t chinodesuuu/theia:latest --no-cache
-  - docker tag chinodesuuu/theia:latest
+  - docker build -f ./theia-latest -t chinodesuuu/theia:latest --no-cache
+  - docker build -f ./theia-next -t chinodesuuu/theia:next --no-cache
 
 before_deploy:
   - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
 deploy:
   provider: script
-  script: docker push chinodesuuu/theia:latest
+  script: docker push chinodesuuu/theia:latest && docker push chinodesuuu/theia:next
   on:
     branch: master
   skip_cleanup: true
