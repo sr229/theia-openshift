@@ -130,7 +130,7 @@ RUN chmod g+rw /home/* && \
     chown theia:root /home/theia;
     
 ## Call package upgrade to make sure we don't supply with old packages
-RUN apt-get update && apt-get upgrade 
+RUN apt-get update && apt-get -y upgrade 
 
 #Theia
 
