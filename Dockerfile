@@ -139,7 +139,7 @@ RUN apt-get update && apt-get install -y python build-essential
 ENV version=next
 WORKDIR /home/theia
 VOLUME /home
-ADD $version.package.json ./package.json
+COPY $version.package.json ./package.json
 RUN yarn --cache-folder ./ycache && rm -rf ./ycache
 RUN yarn theia build
 EXPOSE 3000
