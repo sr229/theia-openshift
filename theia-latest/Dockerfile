@@ -22,7 +22,7 @@ RUN chmod g+rw /home/* && \
     
 
 VOLUME /home
-WORKDIR /home/theia
+WORKDIR /home/node
 EXPOSE 3000
 USER 1000
 CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
