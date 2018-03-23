@@ -20,8 +20,6 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
 RUN chmod g+rw /home/* && \
     chown node:root /home/theia;
     
-## Call package upgrade to make sure we don't supply with old packages
-RUN apt-get update && apt-get -y upgrade 
 
 VOLUME /home
 WORKDIR /home/theia
