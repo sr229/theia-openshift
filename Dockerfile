@@ -1,10 +1,7 @@
-# Theia image - Dockerfile
-# Copyright 2018 (c) Ayane "Capuccino" Satomi
 FROM ubuntu:16.04
-MAINTAINER Ayane Satomi <enra@headbow.stream>
 
 #Common deps
-RUN apt-get update && apt-get -y install curl xz-utils
+RUN apt-get update && apt-get -y install curl wget xz-utils
 
 #Install node and yarn
 #From: https://github.com/nodejs/docker-node/blob/6b8d86d6ad59e0d1e7a94cec2e909cad137a028f/8/Dockerfile
@@ -26,7 +23,7 @@ RUN set -ex \
   gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
   done
 
-ENV NODE_VERSION 8.9.3
+ENV NODE_VERSION 8.9.4
 
 RUN ARCH= && dpkgArch="$(dpkg --print-architecture)" \
   && case "${dpkgArch##*-}" in \
@@ -70,7 +67,7 @@ RUN set -ex \
 ##GO
 
 #Required to use go get with git source
-RUN apt-get update && apt-get -y upgrade && apt-get install -y git
+RUN apt-get update && apt-get install -y git
 
 ENV GO_VERSION 1.9.2
 ENV GOPATH=/usr/local/go-packages
@@ -79,21 +76,21 @@ ENV PATH $PATH:/usr/local/go/bin
 ENV PATH $PATH:${GOPATH}/bin
 
 RUN curl -sS https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz | tar -C /usr/local -xzf -
-RUN go get -u -v github.com/ramya-rao-a/go-outline && \
-    go get -u -v github.com/acroca/go-symbols && \
-    go get -u -v github.com/nsf/gocode && \
-    go get -u -v github.com/rogpeppe/godef  && \ 
-    go get -u -v golang.org/x/tools/cmd/godoc && \
-    go get -u -v github.com/zmb3/gogetdoc && \
-    go get -u -v github.com/golang/lint/golint && \
-    go get -u -v github.com/fatih/gomodifytags && \
-    go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs && \
-    go get -u -v golang.org/x/tools/cmd/gorename && \
-    go get -u -v sourcegraph.com/sqs/goreturns && \
-    go get -u -v github.com/cweill/gotests/... && \
-    go get -u -v golang.org/x/tools/cmd/guru && \
-    go get -u -v github.com/josharian/impl && \
-    go get -u -v github.com/haya14busa/goplay/cmd/goplay;
+RUN go get -u -v github.com/ramya-rao-a/go-outline
+RUN go get -u -v github.com/acroca/go-symbols
+RUN go get -u -v github.com/nsf/gocode
+RUN go get -u -v github.com/rogpeppe/godef
+RUN go get -u -v golang.org/x/tools/cmd/godoc
+RUN go get -u -v github.com/zmb3/gogetdoc
+RUN go get -u -v github.com/golang/lint/golint
+RUN go get -u -v github.com/fatih/gomodifytags
+RUN go get -u -v github.com/uudashr/gopkgs/cmd/gopkgs
+RUN go get -u -v golang.org/x/tools/cmd/gorename
+RUN go get -u -v sourcegraph.com/sqs/goreturns
+RUN go get -u -v github.com/cweill/gotests/...
+RUN go get -u -v golang.org/x/tools/cmd/guru
+RUN go get -u -v github.com/josharian/impl
+RUN go get -u -v github.com/haya14busa/goplay/cmd/goplay
 
 #Java
 RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
@@ -103,31 +100,47 @@ RUN add-apt-repository ppa:webupd8team/java \
   && apt-get install -y oracle-java8-installer
 
 #C/C++
-RUN apt-get update && apt-get install -y clang-5.0
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+RUN echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial main" > /etc/apt/sources.list.d/llvm.list
+RUN apt-get update && apt-get install -y clang-tools-6.0
+RUN ln -s /usr/bin/clangd-6.0 /usr/bin/clangd
 
-#Python
-RUN apt-get update && apt-get install -y python python-pip
-RUN pip install python-language-server
+#Python 2
+RUN apt-get update && apt-get install -y python python-pip && \
+ pip install python-language-server;
+ 
+#Python 3
+RUN add-apt-repository ppa:jonathonf/python-3.6 && \
+    apt-get install -y python3.6
+    
+#Developer tools
 
-#Theia
-##Needed for node-gyp, nsfw build
-RUN apt-get update && apt-get install -y sudo python python3 python3-pip build-essential
+## Git and sudo (sudo needed for user override)
+RUN sudo apt-get -y install git sudo
 
+#OpenShift compatibility
+## User account
 RUN adduser --disabled-password --gecos '' theia && \
     adduser theia sudo && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers;
-
-RUN chmod g+rw /home/theia && \
-    chown -R theia:theia /home/theia;
     
-ARG version=latest
+## Explicit allow access
+RUN chmod g+rw /home/* && \
+    chown theia:root /home/theia;
+    
+## Call package upgrade to make sure we don't supply with old packages
+RUN apt-get update && apt-get upgrade 
+
+#Theia
+##Needed for node-gyp, nsfw build
+RUN apt-get update && apt-get install -y python build-essential
+
 WORKDIR /home/theia
-VOLUME /home/theia
+VOLUME /home
 ADD $version.package.json ./package.json
-RUN yarn  --dev --cache-folder ./ycache && rm -rf ./ycache
+RUN yarn --cache-folder ./ycache && rm -rf ./ycache
 RUN yarn theia build
 EXPOSE 3000
 ENV SHELL /bin/bash
-USER 1000
+USER theia
 CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
-

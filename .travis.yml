@@ -1,32 +1,39 @@
+sudo: required
+
 services:
-    - docker
-
+  - docker
+  
 before_install:
-    - docker --version
+  - sudo apt-get update
+  - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
 
-addons:
-  apt:
-    packages:
-      - docker-ce
+git:
+  depth: 1
+
+language: generic
+
+env:
+  - NPM_TAG=latest IMAGE_NAME=theia
+  - NPM_TAG=next IMAGE_NAME=theia
 
 install:
-    - git clone https://github.com/docker-library/official-images.git official-images
+  - cd "$IMAGE_NAME-docker"
+  - IMAGE="theiaide/$IMAGE_NAME"
+  - IMAGE_TAG="$IMAGE":$(npm view "@theia/core@$NPM_TAG" version)
+  - echo $IMAGE_TAG
+  - travis_wait docker build --build-arg "version=$NPM_TAG" . -t "$IMAGE_TAG" --no-cache
+  - docker tag "$IMAGE_TAG" "$IMAGE:$NPM_TAG"
 
+before_deploy:
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+deploy:
+  provider: script
+  script: docker push "$IMAGE"
+  on:
+    branch: master
+  skip_cleanup: true
 
-before_script:
-    - image="chinodesuuu/theia-osio"
-    - if [ -n "$TRAVIS_TAG" ]; then
-      image="$image:$TRAVIS_TAG";
-      fi
-script:
-    - docker build -t "$image" .
-    - official-images/test/run.sh "$image"
-
-after_script:
-    - docker inspect "$image"    
-
-after_success:
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" -o -n "$TRAVIS_TAG" ]; then 
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push "$image";
-    fi
+notifications:
+  on_success: change
+  on_failure: always
+on_start: never
