@@ -117,7 +117,7 @@ RUN add-apt-repository ppa:jonathonf/python-3.6 && \
 #Developer tools
 
 ## Git and sudo (sudo needed for user override)
-RUN sudo apt-get -y install git sudo
+RUN apt-get -y install git sudo
 
 #OpenShift compatibility
 ## User account
