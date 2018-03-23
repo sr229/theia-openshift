@@ -17,10 +17,11 @@ env:
   - NPM_TAG=next IMAGE_NAME=theia
 
 install:
-  - IMAGE="theiaide/$IMAGE_NAME"
+  - cd "$IMAGE_NAME-docker"
+  - IMAGE="chinodesuuu/$IMAGE_NAME"
   - IMAGE_TAG="$IMAGE":$(npm view "@theia/core@$NPM_TAG" version)
   - echo $IMAGE_TAG
-  - docker build --build-arg "version=$NPM_TAG" . -t "$IMAGE_TAG" --no-cache
+  - travis_wait docker build --build-arg "version=$NPM_TAG" . -t "$IMAGE_TAG" --no-cache
   - docker tag "$IMAGE_TAG" "$IMAGE:$NPM_TAG"
 
 before_deploy:

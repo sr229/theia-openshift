@@ -22,7 +22,8 @@
         "@theia/python": "latest",
         "@theia/terminal": "latest",
         "@theia/typescript": "latest",
-        "@theia/userstorage": "latest"
+        "@theia/userstorage": "latest",
+        "theia-yang-extension": "latest"
     },
     "devDependencies": {
         "@theia/cli": "latest"
