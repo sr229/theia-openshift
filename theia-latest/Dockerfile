@@ -17,8 +17,9 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
     
 ## Explicit allow access
+RUN mkdir /home/node
 RUN chmod g+rw /home/* && \
-    chown node:root /home/theia;
+    chown node:root /home/node;
     
 
 VOLUME /home
