@@ -22,7 +22,6 @@ RUN mkdir -p /home/node && \
 RUN chmod g+rw /home/* && \
     chown -R node:root /home/node/*;
 
-VOLUME /home/node
 WORKDIR /home/node
 EXPOSE 3000
 USER 1000
