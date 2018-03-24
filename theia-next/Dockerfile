@@ -17,13 +17,13 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
     
 ## Explicit allow access
-RUN mkdir -p /home/node
+RUN mkdir -p /home/node/project;
 RUN chmod g+rw /home/* && \
-    chown node:root /home/node;
+    chown -R node:root /home/node && \
     
 
 VOLUME /home
 WORKDIR /home/node
 EXPOSE 3000
 USER 1000
-CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
+CMD [ "yarn", "theia", "start", "/home/node/project", "--hostname=0.0.0.0" ]
