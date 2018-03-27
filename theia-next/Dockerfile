@@ -27,4 +27,4 @@ RUN chmod g+rw /home/* && \
 VOLUME ["/home/theia/"]
 EXPOSE 3000
 USER theia
-CMD [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
+ENTRYPOINT [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
