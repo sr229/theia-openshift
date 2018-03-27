@@ -30,12 +30,12 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
 ## Explicit allow access
 RUN mkdir -p /home/theia && \
     mkdir -p /home/theia/project;
-RUN chmod g+rw /home/* && \
-chown -R theia:theia /home/theia/*;
-WORKDIR /home/theia
+RUN chmod g+rw /workspace && \
+chown -R theia:theia /workspace;
+WORKDIR /workspace
 COPY --from=0 /home/theia /home/theia
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 USER 1000
-ENTRYPOINT [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
+ENTRYPOINT [ "yarn", "theia", "start", "/workspace", "--hostname=0.0.0.0" ]
