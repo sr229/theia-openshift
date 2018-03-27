@@ -24,7 +24,6 @@ RUN mkdir -p /home/theia && \
 RUN chmod g+rw /home/* && \
     chown -R theia:theia /home/theia/*;
 
-VOLUME ["/home/theia/"]
 EXPOSE 3000
 USER theia
 ENTRYPOINT [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
