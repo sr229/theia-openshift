@@ -28,8 +28,7 @@ RUN apk update && \
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
 ## Explicit allow access
-RUN mkdir -p /home/theia && \
-    mkdir -p /home/theia/project;
+RUN mkdir -p /workspace
 RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
 WORKDIR /workspace
