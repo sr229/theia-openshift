@@ -30,6 +30,9 @@ RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
 ## Explicit allow access
 RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
+RUN mkdir -p /.theia
+RUN chmod g+rw /workspace && \
+chown -R theia:theia /workspace;
 RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
 WORKDIR /workspace
