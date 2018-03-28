@@ -38,6 +38,5 @@ COPY --from=0 /home/theia /workspace
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
-VOLUME ["/workspace/project"]
 USER 1000
 ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
