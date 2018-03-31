@@ -11,7 +11,6 @@ RUN yarn && \
 
 # Run layer
 FROM node:8-alpine
-RUN addgroup theia && adduser -G theia -s /bin/sh -D theia;
 RUN apk update && \
     apk upgrade  && \
     apk add --no-cache \
@@ -51,7 +50,7 @@ RUN su theia -c "$(cd ~/ && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";)"
 WORKDIR /workspace
-COPY --from=0 /home/theia /home/theia
+COPY --from=0 /home/theia /home/node
 COPY --from=0 /home/theia /workspace
 EXPOSE 3000
 RUN npm i -g typescript
