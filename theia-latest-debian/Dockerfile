@@ -24,7 +24,6 @@ RUN apt update && \
     build-essential \
     clang \
     openjdk-7-jdk  \
-    su-exec \
     wget \
     curl \
     zsh \
