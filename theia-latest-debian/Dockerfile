@@ -1,5 +1,5 @@
 # Build Layer
-FROM node:8-debian
+FROM node:carbon
 RUN apk add --no-cache make gcc g++ python
 ARG version=latest
 WORKDIR /home/theia
@@ -10,7 +10,7 @@ RUN yarn && \
     yarn cache clean
 
 # Run layer
-FROM node:8-debian
+FROM node:carbon
 RUN addgroup theia && \ 
 adduser -G theia -s /bin/sh -D theia;
 RUN apk update && \
