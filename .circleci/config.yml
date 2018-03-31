@@ -27,6 +27,9 @@ jobs:
       - run:
           name: Build (Theia Next)
           command: docker build -t chinodesuuu/theia:next ./theia-next
+      - run:
+          name: Build (Theia Latest - Debian)
+          command: docker build -t chinodesuuu/theia:debian-next ./theia-next-debian          
   deploy:
     docker:
       - image: chinodesuuu/ci-amethyst:latest
@@ -45,16 +48,28 @@ jobs:
           name: Build (Theia Latest)
           command: docker build -t chinodesuuu/theia:latest ./theia-latest
       - run:
+          name: Build (Theia Latest - Debian)
+          command: docker build -t chinodesuuu/theia:debian ./theia-latest-debian
+  
+      - run:
           name: Build (Theia Next)
           command: docker build -t chinodesuuu/theia:next ./theia-next
       - run:
+          name: Build (Theia Latest - Debian)
+          command: docker build -t chinodesuuu/theia:debian-next ./theia-next-debian
+      - run:
           name: Docker Push (Theia Latest)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:latest
-
+      - run:
+          name: Docker Push (Theia Latest)
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:debian
       - run:
           name: Docker Push (Theia Next)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:next                    
-          
+        - run:
+          name: Docker Push (Theia Latest)
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:debian-next
+        
 workflows:
   version: 2
   scheduled-workflow:
