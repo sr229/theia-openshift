@@ -23,7 +23,7 @@ RUN apt update && \
     python3-pip \
     build-essential \
     clang \
-    openjdk8-jre-headless  \
+    openjdk8-8-jdk  \
     sudo \
     openssh-server \
     openssh-client \
