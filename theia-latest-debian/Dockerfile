@@ -1,6 +1,6 @@
 # Build Layer
 FROM node:carbon
-RUN apk add --no-cache make gcc g++ python
+RUN apt -y install make gcc g++ python
 ARG version=latest
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
@@ -13,18 +13,20 @@ RUN yarn && \
 FROM node:carbon
 RUN addgroup theia && \ 
 adduser -G theia -s /bin/sh -D theia;
-RUN apk update && \
-    apk upgrade  && \
-    apk add --no-cache \
+RUN apt update && \
+    apt -y upgrade  && \
+    apt -y install \
     python \
     python3 \
-    py3-pip \
+    python3-pip \
+    build-essential \
     clang \
-    openjdk8-jre-base  \
+    openjdk8-jre-headless  \
     sudo \
     openssh \
     bash \
     git; 
+    
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
 ## Explicit allow access
