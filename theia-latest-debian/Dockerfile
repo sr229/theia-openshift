@@ -1,6 +1,6 @@
 # Build Layer
 FROM node:carbon
-RUN apt -y install make gcc g++ python
+RUN apt-get -y install make gcc g++ python
 ARG version=latest
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
@@ -12,10 +12,10 @@ RUN yarn && \
 # Run layer
 FROM node:carbon
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN apt update && \
-    apt -y upgrade  && \
-    apt -y install sudo & \
-    apt -y install \
+RUN apt-get update && \
+    apt-get -y upgrade  && \
+    apt-get -y install sudo && \
+    apt-get -y install \
     python \
     python3 \
     python3-pip \
