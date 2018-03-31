@@ -11,7 +11,7 @@ RUN yarn && \
 
 # Run layer
 FROM node:8-alpine
-RUN adduser -G theia -s /bin/sh -D theia;
+RUN addgroup theia && adduser -G theia -s /bin/sh -D theia;
 RUN apk update && \
     apk upgrade  && \
     apk add --no-cache \
