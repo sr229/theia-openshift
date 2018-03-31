@@ -38,8 +38,6 @@ RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
 RUN chmod g+rw /workspace && \
-    chown -R theia:theia /workspace;
-RUN chmod g+rw /workspace && \
     chown -R node:node /workspace;
 WORKDIR /workspace
 RUN su node -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
