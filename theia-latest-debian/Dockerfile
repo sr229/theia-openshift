@@ -11,7 +11,6 @@ RUN yarn && \
 
 # Run layer
 FROM node:carbon
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN apt-get update && \
     apt-get -y upgrade  && \
     apt-get -y install sudo && \
@@ -30,7 +29,7 @@ RUN apt-get update && \
     openssh-client \
     bash \
     git; 
-RUN curl -fsSLR -o /usr/local/bin/su-exec https://github.com/javabean/su-exec/releases/download/v0.2/su-exec.$(dpkg --print-architecture | awk -F- '{ print $NF }')
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
 ## Explicit allow access
