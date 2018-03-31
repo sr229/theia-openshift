@@ -23,18 +23,18 @@ RUN apt update && \
     python3-pip \
     build-essential \
     clang \
-    openjdk-8-jdk  \
+    openjdk-7-jdk  \
     su-exec \
     wget \
     curl \
-    su-exec \
     zsh \
     sudo \
+    unzip\
     openssh-server \
     openssh-client \
     bash \
     git; 
-    
+RUN curl -fsSLR -o /usr/local/bin/su-exec https://github.com/javabean/su-exec/releases/download/v0.2/su-exec.$(dpkg --print-architecture | awk -F- '{ print $NF }')
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
 ## Explicit allow access
@@ -51,6 +51,13 @@ RUN  su-exec theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubuse
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
+RUN su-exec theia sh -c "$(cd ~/ && \
+  mkdir .themes && \
+  cd .themes && \
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";
+)"
 COPY --from=0 /home/theia /home/theia
 COPY --from=0 /home/theia /workspace
 EXPOSE 3000

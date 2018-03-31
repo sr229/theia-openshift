@@ -26,6 +26,7 @@ RUN apk update && \
     clang \
     openjdk8-jre-base  \
     sudo \
+    unzip \
     openssh \
     bash \
     git; 
@@ -44,6 +45,13 @@ RUN  su-exec theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubuse
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
+RUN su-exec theia sh -c "$(cd ~/ && \
+  mkdir .themes && \
+  cd .themes && \
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";
+)"
 WORKDIR /workspace
 COPY --from=0 /home/theia /home/theia
 COPY --from=0 /home/theia /workspace
@@ -52,5 +60,5 @@ RUN npm i -g typescript
 ENV SHELL /usr/bin/zsh
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
-USER 1000
+USER theia
 ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
