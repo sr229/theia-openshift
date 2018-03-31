@@ -14,6 +14,7 @@ FROM node:carbon
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN apt update && \
     apt -y upgrade  && \
+    apt -y install sudo & \
     apt -y install \
     python \
     python3 \
