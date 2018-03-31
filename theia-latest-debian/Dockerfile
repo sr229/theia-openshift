@@ -11,8 +11,10 @@ RUN yarn && \
 
 # Run layer
 FROM node:carbon
-RUN addgroup theia && \ 
-adduser -G theia -s /bin/sh -D theia;
+RUN adduser --disabled-password --gecos '' theia && \
+    adduser theia sudo && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
 RUN apt update && \
     apt -y upgrade  && \
     apt -y install \
