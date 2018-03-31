@@ -35,12 +35,12 @@ RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
 RUN chmod g+rw /workspace && \
 chown -R node:node /workspace;
-RUN su node -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-RUN su node -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+RUN su node -c "$(cd /home/node && curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
-RUN su node -c "$(cd ~/ && \
+RUN su node -c "$(cd /home/node && \
   mkdir .themes && \
   cd .themes && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
