@@ -40,8 +40,8 @@ RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
 RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
-RUN su-exec theia sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-RUN  su-exec theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+RUN su-exec theia:theia sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN  su-exec theia:theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
