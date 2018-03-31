@@ -25,7 +25,8 @@ RUN apt update && \
     clang \
     openjdk8-jre-headless  \
     sudo \
-    openssh \
+    openssh-server \
+    openssh-client \
     bash \
     git; 
     

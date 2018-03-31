@@ -12,7 +12,7 @@ This repository is a rendition of it but with added packages to be like theia-fu
 
 ## Contributing
 
-All contributions are accepted. But it falls under this two parameters:
+All contributions are accepted. But it falls under this three parameters:
 
 - Your PR is tested to work on OpenShift/OpenShift Online.
 - Images always and SHOULD always run on usermode.
