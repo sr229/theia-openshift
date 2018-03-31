@@ -18,6 +18,10 @@ RUN apk update && \
     apk add --no-cache \
     python \
     python3 \
+    wget \
+    curl \
+    build-base \
+    su-exec \
     py3-pip \
     clang \
     openjdk8-jre-base  \
@@ -35,6 +39,11 @@ RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
 RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
+RUN su-exec theia sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN  su-exec theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+     rm -rf .zshrc && \
+     wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
+     rm -rf zshrc;)"
 WORKDIR /workspace
 COPY --from=0 /home/theia /home/theia
 COPY --from=0 /home/theia /workspace

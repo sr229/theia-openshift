@@ -23,7 +23,12 @@ RUN apt update && \
     python3-pip \
     build-essential \
     clang \
-    openjdk8-8-jdk  \
+    openjdk-8-jdk  \
+    su-exec \
+    wget \
+    curl \
+    su-exec \
+    zsh \
     sudo \
     openssh-server \
     openssh-client \
@@ -41,11 +46,16 @@ chown -R theia:theia /workspace;
 RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
 WORKDIR /workspace
+RUN su-exec theia sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN  su-exec theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+     rm -rf .zshrc && \
+     wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
+     rm -rf zshrc;)"
 COPY --from=0 /home/theia /home/theia
 COPY --from=0 /home/theia /workspace
 EXPOSE 3000
 RUN npm i -g typescript
-ENV SHELL /bin/bash
+ENV SHELL /usr/bin/zsh
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
 USER 1000
