@@ -20,7 +20,6 @@ RUN apk update && \
     wget \
     curl \
     build-base \
-    su-exec \
     py3-pip \
     clang \
     openjdk8-jre-base  \
@@ -39,12 +38,12 @@ RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
 RUN chmod g+rw /workspace && \
 chown -R theia:theia /workspace;
-RUN su-exec theia:theia sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-RUN  su-exec theia:theia sh -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+RUN su theia -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+RUN su theia -c "$(cd ~/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
-RUN su-exec theia sh -c "$(cd ~/ && \
+RUN su theia -c "$(cd ~/ && \
   mkdir .themes && \
   cd .themes && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
