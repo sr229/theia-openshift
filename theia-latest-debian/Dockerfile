@@ -56,8 +56,7 @@ RUN su-exec theia sh -c "$(cd ~/ && \
   cd .themes && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";
-)"
+  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";)"
 COPY --from=0 /home/theia /home/theia
 COPY --from=0 /home/theia /workspace
 EXPOSE 3000
