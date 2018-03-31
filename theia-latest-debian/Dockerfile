@@ -24,7 +24,6 @@ RUN apt update && \
     wget \
     curl \
     zsh \
-    sudo \
     unzip\
     openssh-server \
     openssh-client \
