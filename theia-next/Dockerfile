@@ -41,8 +41,8 @@ RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubuser
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
 RUN su node -c "$(cd /home/node && \
-  mkdir .themes && \
-  cd .themes && \
+  mkdir .fonts && \
+  cd .fonts && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
   wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";)"
