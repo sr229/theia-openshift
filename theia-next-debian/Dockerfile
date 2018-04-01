@@ -54,7 +54,7 @@ COPY --from=0 /home/theia /home/node
 COPY --from=0 /home/theia /workspace
 EXPOSE 3000
 RUN npm i -g typescript
-ENV SHELL /bin/zsh
+ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
 USER 1000
