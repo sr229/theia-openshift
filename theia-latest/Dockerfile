@@ -55,5 +55,5 @@ RUN npm i -g typescript
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
-USER 1000
+USER node
 ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
