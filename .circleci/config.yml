@@ -61,13 +61,13 @@ jobs:
           name: Docker Push (Theia Latest)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:latest
       - run:
-          name: Docker Push (Theia Latest)
+          name: Docker Push (Theia Debian Latest)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:debian
       - run:
           name: Docker Push (Theia Next)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:next                    
       - run:
-          name: Docker Push (Theia Latest)
+          name: Docker Push (Theia Debian Next)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:debian-next
         
 workflows:
