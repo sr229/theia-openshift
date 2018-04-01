@@ -33,14 +33,15 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
 ## Explicit allow access
+RUN adduser --disabled-password --gecos '' theia
 RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
 RUN chmod g+rw /workspace && \
-    chown -R node:node /workspace;
+    chown -R theia:theia /workspace;
 WORKDIR /workspace
-RUN su node -c "$(cd /home/node && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
-RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/node && \
+RUN su node -c "$(cd /home/theia && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
+RUN su node -c "$(cd /home/theia/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/theia && \
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc && cat zshrc > .zshrc && \
      rm -rf zshrc;)"
@@ -57,5 +58,5 @@ RUN npm i -g typescript
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
-USER node
+USER theia
 ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
