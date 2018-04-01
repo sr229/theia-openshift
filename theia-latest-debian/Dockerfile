@@ -40,7 +40,7 @@ RUN chmod g+rw /workspace && \
     chown -R node:node /workspace;
 WORKDIR /workspace
 RUN su node -c "$(cd /home/node && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
-RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/node && \
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"

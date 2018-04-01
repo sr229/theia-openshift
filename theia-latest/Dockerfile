@@ -37,7 +37,7 @@ RUN mkdir -p /.theia
 RUN chmod g+rw /workspace && \
     chown -R node:node /workspace;
 RUN su node -c "$(cd /home/node && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
-RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd ~/ && \
+RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/node && \
      rm -rf .zshrc && \
      wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
@@ -55,5 +55,5 @@ RUN npm i -g typescript
 ENV SHELL /bin/zsh
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
-USER theia
+USER 1000
 ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
