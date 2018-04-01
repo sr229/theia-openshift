@@ -30,15 +30,17 @@ RUN apk update && \
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
 ## Explicit allow access
+RUN addgroup theia && \ 
+    adduser -G theia -s /bin/sh -D theia;
 RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
 RUN chmod g+rw /workspace && \
-chown -R node:node /workspace;
-RUN su node -c "$(cd /home/node && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
-RUN su node -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/node && \
+    chown -R theia:theia /workspace;
+RUN su theia -c "$(cd /home/node && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
+RUN su theia -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/node && \
      rm -rf .zshrc && \
-     wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc && cat zshrc > .zshrc && \
+     wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
      rm -rf zshrc;)"
 RUN su node -c "$(cd /home/node && \
   mkdir .fonts && \
@@ -54,5 +56,5 @@ RUN npm i -g typescript
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
-USER node
+USER theia
 ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
