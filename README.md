@@ -3,7 +3,7 @@ A version of Dockerized Theia to work on OpenShift.
 
 ## How it works 
 
-Official TypeFox images does not work on OpenShift for the floowing reasons:
+Official TypeFox images does not work on OpenShift for the following reasons:
 
 - Permission errors 
 - Does not run on user/ runs on root.
