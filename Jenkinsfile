@@ -6,31 +6,31 @@ def stashName = "buildpod.${env.JOB_NAME}.${env.BUILD_NUMBER}".replace('-', '_')
 def envStage = utils.environmentNamespace('stage')
 def envProd = utils.environmentNamespace('run')
 
-mavenNode {
-  checkout scm
-  if (utils.isCI()){
+node {
+    def app
 
-    mavenCI{}
-    
-  } else if (utils.isCD()){
-    echo 'NOTE: running pipelines for the first time will take longer as build and base docker images are pulled onto the node'
-    container(name: 'maven') {
+    stage('Clone repository') {
+        /* Let's make sure we have the repository cloned to our workspace */
 
-      stage('Build Release'){
-        mavenCanaryRelease {
-          version = canaryVersion
-        }
-        //stash deployment manifests
-        stash includes: '**/*.yml', name: stashName
-      }
-
-      stage('Rollout to Stage'){
-        apply{
-          environment = envStage
-        }
-      }
+        checkout scm
     }
-  }
+
+    stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        app = docker.build("getintodevops/hellonode")
+    }
+
+    stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            app.push("latest")
+        }
+    }
 }
 
 if (utils.isCD()){
