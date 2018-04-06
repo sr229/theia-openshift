@@ -40,10 +40,8 @@ RUN chmod g+rw /home
 WORKDIR /home/theia/project
 RUN mkdir -p /.theia
 RUN mkdir -p /.npm
-RUN chmod g+rw /home && \
-    chown -R theia:theia /home/theia/project && \
-    chown -R theia:theia /.* && \
-    chmod g+rw /.*;
+RUN chmod g+rw .npm && chmod g+rw /.theia && \
+    chown theia:theia /.npm && chown theia:theia;
 COPY --from=0 /home/theia /home/theia
 EXPOSE 3000
 RUN npm i -g typescript
