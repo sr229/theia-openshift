@@ -19,7 +19,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("getintodevops/hellonode")
+        app = docker.build("chinodesuuu/theia")
     }
 
     stage('Push image') {

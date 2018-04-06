@@ -16,11 +16,12 @@ RUN apk update && \
     apk add --no-cache \
     python \
     python3 \
+    py3-pip \
+    clang \
     wget \
     curl \
     build-base \
-    py3-pip \
-    clang \
+    su-exec \
     openjdk8-jre-base  \
     sudo \
     unzip \
@@ -36,10 +37,10 @@ RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
 RUN mkdir -p /.npm
+RUN chmod g+rw .* && \
+    chown theia:theia /.*
 RUN chmod g+rw /workspace && \
-    chown -R theia:theia /workspace && \
-    chown -R theia:theia /.* && \
-    chmod g+rw /.*;
+    chown -R theia:theia /workspace;
 WORKDIR /workspace
 COPY --from=0 /home/theia /home/node
 COPY --from=0 /home/theia /workspace

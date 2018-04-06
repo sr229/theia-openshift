@@ -1,7 +1,7 @@
 # Build Layer
 FROM node:carbon
 RUN apt-get -y install make gcc g++ python
-ARG version=next
+ARG version=latest
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
 RUN yarn && \
@@ -40,8 +40,8 @@ RUN chmod g+rw /home
 WORKDIR /home/theia/project
 RUN mkdir -p /.theia
 RUN mkdir -p /.npm
-RUN chmod g+rw /workspace && \
-    chown -R theia:theia /workspace && \
+RUN chmod g+rw /home && \
+    chown -R theia:theia /home/theia/project && \
     chown -R theia:theia /.* && \
     chmod g+rw /.*;
 COPY --from=0 /home/theia /home/theia
