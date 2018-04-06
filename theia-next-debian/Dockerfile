@@ -37,18 +37,13 @@ RUN adduser --disabled-password --gecos '' theia
 RUN mkdir -p /home/theia/project
 RUN mkdir -p /.theia
 RUN chmod g+rw /home
-WORKDIR /workspace
-RUN su node -c "$(cd /home/theia && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
-RUN su node -c "$(cd /home/theia/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/theia && \
-     rm -rf .zshrc && \
-     wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc && cat zshrc > .zshrc && \
-     rm -rf zshrc;)"
-RUN su node -c "$(cd /home/node && \
-  mkdir .fonts && \
-  cd .fonts && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";)"
+WORKDIR /home/theia/project
+RUN mkdir -p /.theia
+RUN mkdir -p /.npm
+RUN chmod g+rw /workspace && \
+    chown -R theia:theia /workspace && \
+    chown -R theia:theia /.* && \
+    chmod g+rw /.*;
 COPY --from=0 /home/theia /home/theia
 EXPOSE 3000
 RUN npm i -g typescript
