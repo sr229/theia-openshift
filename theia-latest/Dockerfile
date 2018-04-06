@@ -37,8 +37,8 @@ RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
 RUN mkdir -p /.npm
-RUN chmod g+rw .npm && chmod g+rw /.theia && \
-    chown theia:theia /.npm && chown theia:theia;
+RUN chmod g+rw /.npm && chmod g+rw /.theia && \
+    chown -R theia:theia /.npm && chown -R theia:theia /.theia;
 RUN chmod g+rw /workspace && \
     chown -R theia:theia /workspace;
 WORKDIR /workspace
