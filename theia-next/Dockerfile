@@ -35,19 +35,11 @@ RUN addgroup theia && \
 RUN mkdir -p /workspace
 RUN mkdir -p /workspace/project
 RUN mkdir -p /.theia
+RUN mkdir -p /.npm
 RUN chmod g+rw /workspace && \
-    chown -R theia:theia /workspace;
-RUN su theia -c "$(cd /home/node && git clone https://github.com/robbyrussell/oh-my-zsh.git .oh-my-zsh)"
-RUN su theia -c "$(cd /home/node/.oh-my-zsh/themes && wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/themes/nyan.zsh-theme && cd /home/node && \
-     rm -rf .zshrc && \
-     wget https://raw.githubusercontent.com/noud02/dotfiles/master/zsh/zshrc >> .zshrc && \
-     rm -rf zshrc;)"
-RUN su node -c "$(cd /home/node && \
-  mkdir .fonts && \
-  cd .fonts && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Regular-400.otf" && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Brands-Regular-400.otf" && \
-  wget "https://github.com/FortAwesome/Font-Awesome/raw/master/use-on-desktop/Font%20Awesome%205%20Free-Solid-900.otf";)"
+    chown -R theia:theia /workspace && \
+    chown -R theia:theia /.* && \
+    chmod g+rw /.*;
 WORKDIR /workspace
 COPY --from=0 /home/theia /home/node
 COPY --from=0 /home/theia /workspace
