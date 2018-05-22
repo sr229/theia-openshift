@@ -26,7 +26,7 @@ RUN apk update && \
     sudo \
     unzip \
     openssh \
-    bash \
+    gettext \
     git; 
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
           chmod 0440 /etc/sudoers.d/user;
@@ -46,8 +46,9 @@ COPY --from=0 /home/theia /home/node
 COPY --from=0 /home/theia /workspace
 EXPOSE 3000
 RUN npm i -g typescript
-ENV SHELL /bin/bash
+ENV SHELL /bin/ash
 ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
 USER theia
-ENTRYPOINT [ "yarn", "theia", "start", "/workspace/project", "--hostname=0.0.0.0" ]
+COPY launch.sh /tmp
+ENTRYPOINT [ "/bin/sh", "/tmp/launch.sh" ]
