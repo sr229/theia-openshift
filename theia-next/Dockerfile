@@ -51,4 +51,5 @@ ENV USE_LOCAL_GIT true
 VOLUME ["/workspace/project"]
 USER theia
 COPY launch.sh /tmp
+COPY passwd_template /tmp
 ENTRYPOINT [ "/bin/sh", "/tmp/launch.sh" ]
