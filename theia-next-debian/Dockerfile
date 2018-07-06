@@ -10,7 +10,7 @@ RUN yarn && \
     yarn cache clean
 
 # Run layer
-FROM node:carbon
+FROM node:jessie
 RUN apt-get update && \
     apt-get -y upgrade  && \
     apt-get -y install sudo && \
