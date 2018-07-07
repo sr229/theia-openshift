@@ -43,10 +43,16 @@ RUN mkdir -p /.npm
 RUN chmod g+rw /.npm && chmod g+rw /.theia && \
     chown -R theia:theia /.npm && chown -R theia:theia /.theia;
 COPY --from=0 /home/theia /home/theia
+COPY entrypoint /home/theia 
+RUN chgrp -R 0 /home/theia && \
+    chmod a+x /home/theia/entrypoint && \
+    chmod -R g=u /home/theia && \
+    chmod g=u /etc/passwd
 EXPOSE 3000
 RUN npm i -g typescript
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 VOLUME ["/home/theia/project"]
-USER theia
-ENTRYPOINT [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
+USER 10001
+ENTRYPOINT ["/home/theia/entrypoint"]
+CMD [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
