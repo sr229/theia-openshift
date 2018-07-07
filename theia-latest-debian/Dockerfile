@@ -1,5 +1,5 @@
 # Build Layer
-FROM node:stretch
+FROM node:9
 RUN apt-get -y install make gcc g++ python
 ARG version=latest
 WORKDIR /home/theia
@@ -10,7 +10,7 @@ RUN yarn && \
     yarn cache clean
 
 # Run layer
-FROM node:stretch
+FROM node:9
 RUN apt-get update && \
     apt-get -y upgrade  && \
     apt-get -y install sudo && \
