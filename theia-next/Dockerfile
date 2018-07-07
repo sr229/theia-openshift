@@ -1,5 +1,5 @@
 # Build Layer
-FROM node:8-alpine
+FROM node:alpine
 RUN apk add --no-cache make gcc g++ python
 ARG version=next
 WORKDIR /home/theia
@@ -10,7 +10,7 @@ RUN yarn && \
     yarn cache clean
 
 # Run layer
-FROM node:8-alpine
+FROM node:alpine
 RUN apk update && \
     apk upgrade  && \
     apk add --no-cache \
