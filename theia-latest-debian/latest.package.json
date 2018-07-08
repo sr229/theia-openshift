@@ -5,7 +5,7 @@
         "@theia/core": "latest",
         "@theia/cpp": "latest",
         "@theia/editor": "latest",
-        "@theia/extension-manager": "latest",
+        "@theia/textmate-grammars" : "latest",
         "@theia/file-search": "latest",
         "@theia/filesystem": "latest",
         "@theia/git": "latest",
