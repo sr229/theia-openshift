@@ -4,6 +4,7 @@
         "typescript": "next",
         "@theia/core": "next",
         "@theia/cpp": "next",
+        "@theia/textmate-grammars" : "next",
         "@theia/editor": "next",
         "@theia/extension-manager": "next",
         "@theia/file-search": "next",

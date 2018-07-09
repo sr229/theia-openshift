@@ -4,6 +4,7 @@
         "typescript": "latest",
         "@theia/core": "latest",
         "@theia/cpp": "latest",
+        "@theia/textmate-grammars" : "latest",
         "@theia/editor": "latest",
         "@theia/extension-manager": "latest",
         "@theia/file-search": "latest",
