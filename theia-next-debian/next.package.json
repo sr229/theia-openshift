@@ -23,8 +23,6 @@
         "@theia/python": "next",
         "@theia/terminal": "next",
         "@theia/typescript": "next",
-        "@theia/userstorage": "next",
-        "theia-yang-extension": "next",
         "@theia/search-in-workspace": "next"
     },
     "devDependencies": {
