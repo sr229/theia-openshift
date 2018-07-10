@@ -4,7 +4,6 @@
         "typescript": "next",
         "@theia/core": "next",
         "@theia/cpp": "next",
-        "@theia/textmate-grammars" : "next",
         "@theia/editor": "next",
         "@theia/extension-manager": "next",
         "@theia/file-search": "next",
@@ -24,7 +23,37 @@
         "@theia/python": "next",
         "@theia/terminal": "next",
         "@theia/typescript": "next",
+        "@theia/userstorage": "next",
+        "theia-yang-extension": "next",
         "@theia/search-in-workspace": "next"
+    },
+    "devDependencies": {
+        "@theia/cli": "next"
+    }
+}
+{
+    "private": true,
+    "dependencies": {
+        "typescript": "next",
+        "@theia/typescript": "next",
+        "@theia/navigator": "next",
+        "@theia/terminal": "next",
+        "@theia/outline-view": "next",
+        "@theia/preferences": "next",
+        "@theia/messages": "next",
+        "@theia/git": "next",
+        "@theia/file-search": "next",
+        "@theia/markers": "next",
+        "@theia/preview": "next",
+        "@theia/callhierarchy": "next",
+        "@theia/merge-conflicts": "next",
+        "@theia/search-in-workspace": "next",
+        "@theia/textmate-grammars": "next",
+        "@theia/go": "next",
+        "@theia/java": "next",
+        "@theia/search-in-workspace": "next",
+        "@theia/languages" : "next",
+        "@theia/cpp": "next"
     },
     "devDependencies": {
         "@theia/cli": "next"
