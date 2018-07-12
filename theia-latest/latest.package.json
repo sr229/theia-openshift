@@ -18,7 +18,6 @@
         "@theia/textmate-grammars": "latest",
         "@theia/go": "latest",
         "@theia/java": "latest",
-        "@theia/search-in-workspace": "latest",
         "@theia/languages": "latest",
         "@theia/cpp": "latest"
     },
