@@ -19,7 +19,7 @@
         "@theia/go": "latest",
         "@theia/java": "latest",
         "@theia/search-in-workspace": "latest",
-        "@theia/languages" : "latest",
+        "@theia/languages": "latest",
         "@theia/cpp": "latest"
     },
     "devDependencies": {
