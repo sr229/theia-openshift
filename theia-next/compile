@@ -17,12 +17,14 @@ apt-get update && \
     openssh-server \
     openssh-client \
     bash \
-    git; 
+    git;
+npm i -g typescript
+# Step 2 : add user
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
 chmod 0440 /etc/sudoers.d/user;
-# Step 2: Add permissions
+# Step 3: Add permissions
 mkdir -p /home/project && \
          mkdir -p /.theia && \
          chmod g+rw /home &&  \
