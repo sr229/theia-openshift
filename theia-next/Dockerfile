@@ -11,7 +11,7 @@ RUN yarn && \
 
 # Run layer
 FROM node:9
-COPY compile /tmp
+COPY compile /tmp/
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia 
 RUN  /tmp/compile
