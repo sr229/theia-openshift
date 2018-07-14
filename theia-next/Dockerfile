@@ -11,47 +11,14 @@ RUN yarn && \
 
 # Run layer
 FROM node:9
-RUN apt-get update && \
-    apt-get -y upgrade  && \
-    apt-get -y install sudo && \
-    apt-get -y install \
-    python \
-    python3 \
-    python3-pip \
-    build-essential \
-    clang \
-    openjdk-7-jdk  \
-    wget \
-    curl \
-    zsh \
-    unzip\
-    openssh-server \
-    openssh-client \
-    bash \
-    git; 
-RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
-          chmod 0440 /etc/sudoers.d/user;
-## Explicit allow access
-RUN adduser --disabled-password --gecos '' theia
-RUN mkdir -p /home/theia/project
-RUN mkdir -p /.theia
-RUN chmod g+rw /home
-WORKDIR /home/theia/project
-RUN mkdir -p /.theia
-RUN mkdir -p /.npm
-RUN chmod g+rw /.npm && chmod g+rw /.theia && \
-    chown -R theia:theia /.npm && chown -R theia:theia /.theia;
+COPY compile  /tmp
+RUN  /tmp/compile
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia 
-RUN chgrp -R 0 /home/theia && \
-    chmod a+x /home/theia/entrypoint && \
-    chmod -R g=u /home/theia && \
-    chmod g=u /etc/passwd
 EXPOSE 3000
-RUN npm i -g typescript
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
+WORKDIR /home/theia/project
 VOLUME ["/home/theia/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
