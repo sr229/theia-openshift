@@ -12,13 +12,13 @@ RUN yarn && \
 # Run layer
 FROM node:9
 COPY --from=0 /home/theia /home/theia
-COPY entrypoint /home/theia 
-COPY  compile.sh /tmp/
-RUN  /tmp/compile.sh
+COPY entrypoint /home/theia
+WORKDIR /home/theia 
+COPY  compile.sh ./compile
+RUN  ./compile && rm -rf ./compile
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
-WORKDIR /home/theia
 VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
