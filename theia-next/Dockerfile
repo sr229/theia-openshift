@@ -14,7 +14,7 @@ FROM node:9
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia
 WORKDIR /home/theia 
-COPY compile.sh /home/theia/
+ADD ./compile.sh /home/theia/
 RUN /home/theia/compile.sh && rm -rf /home/theia/compile.sh
 EXPOSE 3000
 ENV SHELL /bin/bash
