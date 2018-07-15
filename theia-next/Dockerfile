@@ -11,11 +11,11 @@ RUN yarn && \
 
 # Run layer
 FROM node:9
+ADD compile.sh /tmp/
+RUN /tmp/compile.sh
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia
 WORKDIR /home/theia 
-COPY ["compile.sh", "/home/theia/"]
-RUN /home/theia/compile.sh && rm -rf /home/theia/compile.sh
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
