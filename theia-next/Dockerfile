@@ -14,8 +14,8 @@ FROM node:9
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia
 WORKDIR /home/theia 
-COPY compile.sh ./compile
-RUN ./compile && rm -rf ./compile
+COPY compile.sh /home/theia/
+RUN /home/theia/compile && rm -rf /home/theia/compile
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
