@@ -11,9 +11,9 @@ RUN yarn && \
 
 # Run layer
 FROM node:9
-ADD compile /tmp/
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia 
+ADD  compile /tmp/
 RUN  /tmp/compile
 EXPOSE 3000
 ENV SHELL /bin/bash
