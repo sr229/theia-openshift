@@ -12,7 +12,7 @@ RUN yarn && \
 # Run layer
 FROM node:9
 ADD compile.sh /tmp/
-RUN ls
+RUN ls /tmp/
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia
 WORKDIR /home/theia 
