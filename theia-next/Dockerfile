@@ -13,13 +13,13 @@ RUN yarn && \
 FROM node:9
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia 
-COPY  compile /tmp/compile
-RUN  /tmp/compile
+COPY  compile.sh /tmp/
+RUN  /tmp/compile.sh
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
-WORKDIR /home/theia/project
-VOLUME ["/home/theia/project"]
+WORKDIR /home/theia
+VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
-CMD [ "yarn", "theia", "start", "/home/theia/project", "--hostname=0.0.0.0" ]
+CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
