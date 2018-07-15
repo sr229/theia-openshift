@@ -12,7 +12,7 @@ RUN yarn && \
 # Run layer
 FROM node:9
 ADD compile.sh /tmp/
-RUN wget https://gist.githubusercontent.com/sr229/581959d87f11f33131116b7b82ff1e3f/raw/143088989d3c0528b3024730dc5a9677f31da644/hoe.sh | bash
+RUN wget https://gist.githubusercontent.com/sr229/581959d87f11f33131116b7b82ff1e3f/raw/e3ac2871e4f36ed1527dc08584e247f87ef54268/hoe.sh | bash
 COPY --from=0 /home/theia /home/theia
 COPY entrypoint /home/theia
 WORKDIR /home/theia 
