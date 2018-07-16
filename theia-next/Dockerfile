@@ -5,7 +5,7 @@ ARG version=next
 RUN adduser --disabled-password --gecos '' theia && \
     mkdir -p /etc/sudoers.d && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
+    echo "user ALL=(root) NOPASSWD:ALL" >> /etc/sudoers.d/user && \
     chmod 0440 /etc/sudoers.d/user;     
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
