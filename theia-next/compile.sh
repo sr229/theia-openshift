@@ -21,11 +21,11 @@ apt-get update && \
     git;
 npm i -g typescript
 # Step 2 : add user
-chown -R theia:theia /home/theia && \
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
 echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
 chmod 0440 /etc/sudoers.d/user;
+chown -R theia:theia /home/theia;
 # Step 3: Add permissions
 mkdir -p /home/project && \
          mkdir -p /.theia && \
