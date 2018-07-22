@@ -8,6 +8,7 @@ apt-get update && \
     python \
     python3 \
     python3-pip \
+    pip \
     build-essential \
     clang \
     openjdk-7-jdk \
@@ -20,7 +21,7 @@ apt-get update && \
     bash \
     git;
 npm i -g typescript
-pip install python-language-server
+pip3 install python-language-server
 # Step 2 : add user
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
