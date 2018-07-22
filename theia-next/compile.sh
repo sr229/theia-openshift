@@ -21,7 +21,7 @@ apt-get update && \
     bash \
     git;
 npm i -g typescript
-pip3 install python-language-server
+pip install python-language-server
 # Step 2 : add user
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
