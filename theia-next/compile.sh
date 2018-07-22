@@ -8,7 +8,7 @@ apt-get update && \
     python \
     python3 \
     python3-pip \
-    pip \
+    python-pip \
     build-essential \
     clang \
     openjdk-7-jdk \
