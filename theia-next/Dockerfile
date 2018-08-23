@@ -24,6 +24,7 @@ WORKDIR /home/theia
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
+ENV NODE_OPTIONS "--max-old-space-size=256"
 VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
