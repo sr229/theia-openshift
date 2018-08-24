@@ -1,7 +1,8 @@
 # Build Layer
-FROM node:9
+FROM node:9 as build
 RUN apt-get -y install make gcc g++ python
 ARG version=next
+ENV NODE_OPTIONS "--expose-gc --always-compact --max-old-space-size=512"
 RUN adduser --disabled-password --gecos '' theia && \
     mkdir -p /etc/sudoers.d && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
@@ -19,7 +20,7 @@ FROM node:9
 COPY entrypoint /home/theia/
 ADD compile.sh /tmp/
 RUN cd /tmp/ && bash compile.sh
-COPY --from=0 /home/theia /home/theia
+COPY --from=build /home/theia /home/theia
 WORKDIR /home/theia 
 EXPOSE 3000
 ENV SHELL /bin/bash
