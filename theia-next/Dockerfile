@@ -2,7 +2,7 @@
 FROM node:9 as build
 RUN apt-get -y install make gcc g++ python
 ARG version=next
-ENV NODE_OPTIONS "--always_compact --max_old_space_size=512"
+ENV NODE_OPTIONS "--max_old_space_size=512"
 RUN adduser --disabled-password --gecos '' theia && \
     mkdir -p /etc/sudoers.d && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
@@ -25,7 +25,7 @@ WORKDIR /home/theia
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
-ENV NODE_OPTIONS "--always_compact --max_old_space_size=256"
+ENV NODE_OPTIONS "--max_old_space_size=256"
 VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
