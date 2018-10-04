@@ -25,7 +25,8 @@ EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
 ENV NODE_OPTIONS "--max_old_space_size=256"
+ENV PROTOCOL="http"
 VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
-CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
+CMD [ "yarn", "theia", "start", "/home/project", "--hostname=$PROTOCOL://0.0.0.0" ]
