@@ -24,7 +24,6 @@ WORKDIR /home/theia
 EXPOSE 3000
 ENV SHELL /bin/bash
 ENV USE_LOCAL_GIT true
-ENV NODE_OPTIONS "--max_old_space_size=256"
 ENV PROTOCOL="http"
 VOLUME ["/home/project"]
 USER 10001
