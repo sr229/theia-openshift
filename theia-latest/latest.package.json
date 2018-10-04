@@ -1,28 +1,28 @@
 {
     "private": true,
     "dependencies": {
-       "@theia/core": "next",
-       "@theia/filesystem": "next",
-       "@theia/workspace": "next",
-       "@theia/preferences": "next",
-       "@theia/navigator": "next",
-       "@theia/process": "next",
-       "@theia/terminal": "next",
-       "@theia/file-search": "next",
-       "@theia/messages": "next",
-       "@theia/git": "next",
-       "@theia/editor": "next",
-       "@theia/languages": "next",
-       "@theia/markers": "next",
-       "@theia/monaco": "next",
-       "@theia/typescript": "next",
-       "@theia/json": "next",
-       "@theia/textmate-grammars": "next",
-       "@theia/java" : "next",
-       "@theia/cpp": "next"
+       "@theia/core": "latest",
+       "@theia/filesystem": "latest",
+       "@theia/workspace": "latest",
+       "@theia/preferences": "latest",
+       "@theia/navigator": "latest",
+       "@theia/process": "latest",
+       "@theia/terminal": "latest",
+       "@theia/file-search": "latest",
+       "@theia/messages": "latest",
+       "@theia/git": "latest",
+       "@theia/editor": "latest",
+       "@theia/languages": "latest",
+       "@theia/markers": "latest",
+       "@theia/monaco": "latest",
+       "@theia/typescript": "latest",
+       "@theia/json": "latest",
+       "@theia/textmate-grammars": "latest",
+       "@theia/java" : "latest",
+       "@theia/cpp": "latest"
     },
     "devDependencies": {
-        "@theia/cli": "next"
+        "@theia/cli": "latest"
     },
     "theia": {
         "target": "browser"
