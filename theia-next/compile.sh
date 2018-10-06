@@ -20,8 +20,6 @@ apt-get update && \
     bash \
     git;
 npm i -g typescript
-php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
-php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 # Step 2 : add user
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
