@@ -11,9 +11,9 @@ apt-get update && \
     python-pip \
     build-essential \
     clang \
-    openjdk-7-jdk \
+    openjdk-8-jdk \
     wget \
-    php7-cli \
+    php7.0-cli \
     curl \
     unzip\
     openssh-server \

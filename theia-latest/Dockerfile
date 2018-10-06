@@ -17,7 +17,7 @@ RUN yarn && \
     yarn cache clean
 
 # Run layer
-FROM node:9
+FROM node:8-stretch
 COPY entrypoint /home/theia/
 ADD compile.sh /tmp/
 RUN cd /tmp/ && bash compile.sh
