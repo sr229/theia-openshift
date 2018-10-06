@@ -13,7 +13,6 @@ apt-get update && \
     clang \
     openjdk-8-jdk \
     wget \
-    php7.0-cli \
     curl \
     unzip\
     openssh-server \
