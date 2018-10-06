@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e 
+set -e
 
 apt-get update && \
     apt-get -y upgrade  && \
@@ -13,14 +13,16 @@ apt-get update && \
     clang \
     openjdk-7-jdk \
     wget \
+    php7-cli \
     curl \
-    zsh \
     unzip\
     openssh-server \
     openssh-client \
     bash \
     git;
 npm i -g typescript
+php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');"
+php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 # Step 2 : add user
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
