@@ -1,6 +1,8 @@
 # Build Layer
 FROM node:9 as build
-RUN apt-get -y install make gcc g++ python
+RUN apt-get -y install make gcc g++ python php7-cli
+RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && \
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
 ARG version=next
 RUN adduser --disabled-password --gecos '' theia && \
     mkdir -p /etc/sudoers.d && \
