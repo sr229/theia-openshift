@@ -1,5 +1,5 @@
 # Build Layer
-FROM node:9
+FROM node:8-stretch as build
 RUN apt-get update && apt-get -y install make gcc g++ python php7.0-cli
 RUN php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
