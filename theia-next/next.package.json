@@ -45,8 +45,5 @@
     },
     "devDependencies": {
         "@theia/cli": "next"
-    },
-    "theia": {
-        "target": "browser"
     }
 }
