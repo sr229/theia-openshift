@@ -2,7 +2,7 @@
 export HOME=/home/theia
 export USER_ID=$(id -u)
 export GROUP_ID=$(id -g)
-export alias node="node --v8-options --expose-gc --max-old-space-size=64"
+export alias node="node --expose-gc --max-old-space-size=64"
 
 if [ -w /etc/passwd ]; then
   echo "default:x:$(id -u):$(id -g):default user:${HOME}:/sbin/nologin" >> /etc/passwd
