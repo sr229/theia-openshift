@@ -38,3 +38,7 @@ mkdir -p /home/project && \
          chmod a+x /home/theia/entrypoint && \
          chmod -R g=u /home/theia && \
          chmod g=u /etc/passwd;
+
+# Step 4: Clean APT cache
+
+apt-get clean
