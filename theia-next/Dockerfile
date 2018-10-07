@@ -28,4 +28,4 @@ VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
 # CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
-CMD ["node","--expose-gc", "--always-compact" "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0"]
+CMD ["node", "--expose-gc", "--always-compact" "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0"]
