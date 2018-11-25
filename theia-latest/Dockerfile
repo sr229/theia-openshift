@@ -9,9 +9,9 @@ RUN adduser --disabled-password --gecos '' theia && \
     chmod 0440 /etc/sudoers.d/user;
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
-RUN yarn --production && \
+RUN yarn --pure-lockfile && \
     yarn theia build && \
-    rm -rf ./node_modules/electron && \
+    yarn --production && \
     yarn autoclean init && \
     echo *.ts >> .yarnclean && \
     echo *.ts.map >> .yarnclean && \
