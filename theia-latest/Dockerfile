@@ -1,28 +1,13 @@
-# Build Layer
-FROM node:8-stretch as build
-RUN apt-get update && apt-get -y install make gcc g++ python
-ARG version=latest
-RUN adduser --disabled-password --gecos '' theia && \
-    mkdir -p /etc/sudoers.d && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    echo "user ALL=(root) NOPASSWD:ALL" >> /etc/sudoers.d/user && \
-    chmod 0440 /etc/sudoers.d/user;
-WORKDIR /home/theia
-ADD $version.package.json ./package.json
-RUN yarn --pure-lockfile && \
-    yarn theia build && \
-    yarn autoclean --force && \
-    echo *.ts >> .yarnclean && \
-    echo *.ts.map >> .yarnclean && \
-    echo *.spec.* >> .yarnclean && \    
-    yarn cache clean
+# IDE Layer
+FROM theiaide/theia:latest as theia-base
 
 # Run layer
 FROM node:8-stretch
 COPY entrypoint /home/theia/
 ADD compile.sh /tmp/
 RUN cd /tmp/ && bash compile.sh
-COPY --from=build /home/theia /home/theia
+COPY --from=theia-base /home/theia /home/theia
+COPY entrypoint /home/theia
 WORKDIR /home/theia
 EXPOSE 3000
 ENV SHELL /bin/bash
@@ -31,4 +16,4 @@ VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
 # CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
-CMD ["node","--expose-gc", "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0"]
+CMD [ "node", "--always-compact", "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0" ] 

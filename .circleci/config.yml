@@ -17,9 +17,9 @@ jobs:
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
-#      - run:
-#          name: Build (Theia Next)
-#          command: docker build -t chinodesuuu/theia:next ./theia-next  
+      - run:
+          name: Build (Theia Next)
+          command: docker build -t chinodesuuu/theia:next ./theia-next  
       - run:
           name: Build (Theia Latest)
           command: docker build -t chinodesuuu/theia:latest ./theia-latest   
@@ -37,18 +37,18 @@ jobs:
             curl -L -o /tmp/docker-$VER.tgz https://get.docker.com/builds/Linux/x86_64/docker-$VER.tgz
             tar -xz -C /tmp -f /tmp/docker-$VER.tgz
             mv /tmp/docker/* /usr/bin
-#      - run:
-#          name: Build (Theia Next)
-#          command: docker build -t chinodesuuu/theia:next ./theia-next  
+      - run:
+          name: Build (Theia Next)
+          command: docker build -t chinodesuuu/theia:next ./theia-next  
       - run:
           name: Build (Theia Latest)
           command: docker build -t chinodesuuu/theia:latest ./theia-latest
       - run:
           name: Docker Push (Theia Latest)
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:latest
-#      - run:
-#          name: Docker Push (Theia Next)
-#          command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:next            
+      - run:
+          name: Docker Push (Theia Next)
+          command: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push chinodesuuu/theia:next            
         
 workflows:
   version: 2

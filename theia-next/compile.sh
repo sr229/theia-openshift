@@ -5,19 +5,18 @@ apt-get update && \
     apt-get -y upgrade  && \
     apt-get -y install sudo && \
     apt-get -y install \
-    python \
     python3 \
     python3-pip \
-    python-pip \
     build-essential \
     clang \
     openjdk-8-jdk \
     wget \
     curl \
+    gzip \
+    gunzip \
     unzip\
     openssh-server \
     openssh-client \
-    bash \
     git;
 npm i -g typescript
 # Step 2 : add user
