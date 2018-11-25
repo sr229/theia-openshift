@@ -9,7 +9,6 @@ apt-get update && \
     python3-pip \
     build-essential \
     musl \
-    musl-dev \
     wget \
     curl \
     gzip \
