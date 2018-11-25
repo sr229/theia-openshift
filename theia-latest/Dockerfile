@@ -16,7 +16,7 @@ RUN yarn --pure-lockfile && \
     echo *.ts.map >> .yarnclean && \
     echo *.spec.* >> .yarnclean && \    
     yarn cache clean
-    
+
 # Run layer
 FROM node:8-stretch
 COPY --from=theia-base /home/theia /home/theia
@@ -30,5 +30,4 @@ ENV USE_LOCAL_GIT true
 VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
-# CMD [ "yarn", "theia", "start", "/home/project", "--hostname=0.0.0.0" ]
 CMD [ "node", "--always-compact", "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0" ] 
