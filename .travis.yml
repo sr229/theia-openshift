@@ -13,11 +13,12 @@ install:
     - git clone https://github.com/docker-library/official-images.git official-images
 
 script:
-    - docker build -t "$image" . && docker build -t "$IMAGE_SLUG:latest" ./theia-latest;
+    - docker build -t "$IMAGE_SLUG:latest" ./theia-latest;
     - docker build -t "$IMAGE_SLUG:next" ./theia-next;
 
 after_script:
-    - docker inspect "$image"    
+    - docker inspect "$IMAGE_SLUG:latest"
+    - docker inspect "$IMAGE_SLUG:next"    
     - docker images
 
 after_success:
