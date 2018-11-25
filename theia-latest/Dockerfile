@@ -11,7 +11,6 @@ WORKDIR /home/theia
 ADD $version.package.json ./package.json
 RUN yarn --pure-lockfile && \
     yarn theia build && \
-    yarn --production && \
     yarn autoclean --force && \
     echo *.ts >> .yarnclean && \
     echo *.ts.map >> .yarnclean && \
