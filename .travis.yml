@@ -12,18 +12,9 @@ addons:
 install:
     - git clone https://github.com/docker-library/official-images.git official-images
 
-# Assist with ci test debugging:
-#   - DEBUG=1
-before_script:
-    - if [ -n "$TRAVIS_TAG" ]; then
-      image="$IMAGE_SLUG:$TRAVIS_TAG";
-      fi
 script:
-    - if [ -n "$TRAVIS_TAG" ]; then
-      docker build -t "$image" . && docker build -t "$IMAGE_SLUG:latest" .;
-      else
-      docker build -t "$IMAGE_SLUG:latest" .;
-      fi
+    - docker build -t "$image" . && docker build -t "$IMAGE_SLUG:latest" ./theia-latest;
+    - docker build -t "$IMAGE_SLUG:next" ./theia-next;
 
 after_script:
     - docker inspect "$image"    
@@ -32,5 +23,5 @@ after_script:
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" -o -n "$TRAVIS_TAG" ]; then 
     echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
-    docker push "$image" && docker push "$IMAGE_SLUG:latest";
+    docker push "$IMAGE_SLUG:next" && docker push "$IMAGE_SLUG:latest";
     fi
