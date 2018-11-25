@@ -1,7 +1,7 @@
 # IDE Layer
 FROM node:8-stretch as theia-base
 RUN apt-get update && apt-get -y install make gcc g++ python
-ARG version=latest
+ARG version=next
 RUN adduser --disabled-password --gecos '' theia && \
     mkdir -p /etc/sudoers.d && \
     echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
