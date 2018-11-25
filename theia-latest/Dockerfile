@@ -3,11 +3,10 @@ FROM theiaide/theia:latest as theia-base
 
 # Run layer
 FROM node:8-stretch
+COPY --from=theia-base /home/theia /home/theia
 COPY entrypoint /home/theia/
 ADD compile.sh /tmp/
 RUN cd /tmp/ && bash compile.sh
-COPY --from=theia-base /home/theia /home/theia
-COPY entrypoint /home/theia
 WORKDIR /home/theia
 EXPOSE 3000
 ENV SHELL /bin/bash

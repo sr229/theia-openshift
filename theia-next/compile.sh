@@ -13,9 +13,7 @@ apt-get update && \
     wget \
     curl \
     gzip \
-    gunzip \
     unzip\
-    openssh-server \
     openssh-client \
     git;
 npm i -g typescript
