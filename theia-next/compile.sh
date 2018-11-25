@@ -8,7 +8,8 @@ apt-get update && \
     python3 \
     python3-pip \
     build-essential \
-    clang \
+    musl \
+    musl-dev \
     wget \
     curl \
     gzip \

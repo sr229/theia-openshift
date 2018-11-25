@@ -8,7 +8,8 @@ apt-get update && \
     python3 \
     python3-pip \
     build-essential \
-    clang \
+    musl \
+    musl-dev \
     wget \
     curl \
     gzip \
@@ -34,7 +35,7 @@ mkdir -p /home/project && \
          chmod a+x /home/theia/entrypoint && \
          chmod -R g=u /home/theia && \
          chmod g=u /etc/passwd;
-
+         
 # Step 4: Clean APT cache
 
 apt-get clean
