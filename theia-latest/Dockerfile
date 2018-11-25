@@ -12,7 +12,7 @@ ADD $version.package.json ./package.json
 RUN yarn --pure-lockfile && \
     yarn theia build && \
     yarn --production && \
-    yarn autoclean init && \
+    yarn autoclean --force && \
     echo *.ts >> .yarnclean && \
     echo *.ts.map >> .yarnclean && \
     echo *.spec.* >> .yarnclean && \    
