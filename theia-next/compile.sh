@@ -38,3 +38,5 @@ mkdir -p /home/project && \
 # Step 4: Clean APT cache
 
 apt-get clean
+apt-get autoclean
+rm -rf /var/cache/apt/archives

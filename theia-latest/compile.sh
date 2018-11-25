@@ -11,6 +11,7 @@ apt-get update && \
     clang \
     wget \
     curl \
+    gzip \
     unzip\
     openssh-client \
     git;
@@ -37,3 +38,5 @@ mkdir -p /home/project && \
 # Step 4: Clean APT cache
 
 apt-get clean
+apt-get autoclean
+rm -rf /var/cache/apt/archives
