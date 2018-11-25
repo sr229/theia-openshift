@@ -12,7 +12,6 @@
         "@theia/filesystem": "latest",
         "@theia/git": "latest",
         "@theia/go": "latest",
-        "@theia/java": "latest",
         "@theia/json": "latest",
         "@theia/keymaps": "latest",
         "@theia/languages": "latest",

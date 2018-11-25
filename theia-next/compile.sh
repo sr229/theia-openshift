@@ -9,7 +9,6 @@ apt-get update && \
     python3-pip \
     build-essential \
     clang \
-    openjdk-8-jdk \
     wget \
     curl \
     gzip \
