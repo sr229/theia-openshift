@@ -26,3 +26,7 @@ after_success:
     echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
     docker push "$IMAGE_SLUG:next" && docker push "$IMAGE_SLUG:latest";
     fi
+
+notifications:
+  webhooks:
+    - https://cryptic-lowlands-17496.herokuapp.com/webhooks/travis
