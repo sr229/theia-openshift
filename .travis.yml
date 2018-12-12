@@ -20,7 +20,6 @@ after_script:
     - docker inspect "$IMAGE_SLUG:latest"
     - docker inspect "$IMAGE_SLUG:next"    
     - docker images
-
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" -o -n "$TRAVIS_TAG" ]; then 
     echo "$DOCKER_PASSWORD" | docker login -u="$DOCKER_USERNAME" --password-stdin;
