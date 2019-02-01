@@ -58,12 +58,16 @@ workflows:
           cron: "0 0 * * 0"
           filters:
             branches:
-              only: master
+              only: release
     jobs:
       - deploy
-  build-n-deploy: 
+  build-n-deploy:
     jobs:
       - build
       - deploy:
           requires:
              - build
+          filters:
+            branches:
+               only: release
+      
