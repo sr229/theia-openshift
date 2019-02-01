@@ -25,8 +25,8 @@ ADD compile.sh /tmp/
 RUN cd /tmp/ && bash compile.sh
 WORKDIR /home/theia
 EXPOSE 3000
-ENV SHELL /bin/bash
-ENV USE_LOCAL_GIT true
+ENV SHELL /bin/bash \
+    USE_LOCAL_GIT true
 VOLUME ["/home/project"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
