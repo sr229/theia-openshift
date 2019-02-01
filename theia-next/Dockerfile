@@ -9,12 +9,13 @@ RUN adduser --disabled-password --gecos '' theia && \
     chmod 0440 /etc/sudoers.d/user;
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
-RUN yarn install && \
+RUN yarn --pure-lockfile && \
     NODE_OPTIONS="--max_old_space_size=4096" yarn theia build && \
-    yarn autoclean --force && \
+    yarn --production && \
+    yarn autoclean --init && \
     echo *.ts >> .yarnclean && \
     echo *.ts.map >> .yarnclean && \
-    echo *.spec.* >> .yarnclean && \    
+    echo *.spec.* >> .yarnclean && \
     yarn cache clean
 
 # Run layer
