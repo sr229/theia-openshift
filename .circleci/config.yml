@@ -4,10 +4,8 @@ notify:
     - url: https://circledisc-clarity.herokuapp.com/webhook/circle
 jobs:
   build:
-    docker:
-      - image: chinodesuuu/ci-amethyst:latest  
+    machine: true
     steps:
-      - setup_remote_docker
       - checkout
       - run:
           name: Install Docker client
