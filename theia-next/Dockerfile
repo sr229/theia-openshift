@@ -10,7 +10,7 @@ RUN adduser --disabled-password --gecos '' theia && \
 WORKDIR /home/theia
 ADD $version.package.json ./package.json
 RUN yarn --pure-lockfile && \
-    yarn theia build && \
+    NODE_OPTIONS="--max_old_space_size=4096" yarn theia build && \
     yarn autoclean --force && \
     echo *.ts >> .yarnclean && \
     echo *.ts.map >> .yarnclean && \
