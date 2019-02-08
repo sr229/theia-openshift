@@ -1,7 +1,7 @@
 {
     "private": true,
     "dependencies": {
-        "typescript": "latest",
+        "typescript": "next",
         "@theia/callhierarchy": "next",
         "@theia/core": "next",
         "@theia/cpp": "next",
@@ -28,6 +28,9 @@
         "@theia/outline-view": "next",
         "@theia/output": "next",
         "@theia/preferences": "next",
+        "@theia/plugin": "next",
+        "@theia/plugin-ext": "next",
+        "@theia/plugin-ext-vscode": "next",
         "@theia/preview": "next",
         "@theia/process": "next",
         "@theia/python": "next",
