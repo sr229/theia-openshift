@@ -8,7 +8,6 @@ apt-get update && \
     python3 \
     python3-pip \
     build-essential \
-    musl \
     wget \
     curl \
     gzip \
@@ -24,12 +23,13 @@ chmod 0440 /etc/sudoers.d/user;
 chown -R theia:theia /home/theia;
 # Step 3: Add permissions
 mkdir -p /home/project && \
+mkdir -p /home/theia/plugins && \
          mkdir -p /.theia && \
          chmod g+rw /home &&  \
          mkdir -p /.theia && \
          mkdir -p /.npm && \
-         chmod g+rw /.npm && chmod g+rw /.theia && chmod g+rw /home/project && \
-         chown -R theia:theia /.npm && chown -R theia:theia /.theia && chown -R theia:theia /home/project;
+         chmod g+rw /.npm && chmod g+rw /.theia && chmod -R g+rw /home/project && chmod -R g+rw /home/theia/plugins && \
+         chown -R theia:theia /.npm && chown -R theia:theia /.theia && chown -R theia:theia /home/project && chown -R theia:theia /home/theia/plugins;
          chgrp -R 0 /home/theia && \
          chmod a+x /home/theia/entrypoint && \
          chmod -R g=u /home/theia && \
