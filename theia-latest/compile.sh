@@ -8,6 +8,7 @@ apt-get update && \
     python3 \
     python3-pip \
     build-essential \
+    dumb-init \
     wget \
     curl \
     gzip \
