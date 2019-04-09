@@ -2,7 +2,6 @@
 set -e
 
 apt-get update && \
-    apt-get -y upgrade  && \
     apt-get -y install sudo && \
     apt-get -y install \
     python3 \
@@ -15,7 +14,6 @@ apt-get update && \
     unzip\
     openssh-client \
     git;
-npm i -g typescript
 # Step 2 : add user
 adduser --disabled-password --gecos '' theia && \
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
