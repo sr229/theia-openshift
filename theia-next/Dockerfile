@@ -32,4 +32,4 @@ ENV SHELL=/bin/bash \
 VOLUME ["/home/project", "/home/theia/plugins"]
 USER 10001
 ENTRYPOINT ["/home/theia/entrypoint"]
-CMD [ "dumb-init", "node", "--always-compact", "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0" ] 
+CMD [ "dumb-init", "node", "--always-compact", "--max-old-space-size=64", "/home/theia/src-gen/backend/main.js", "/home/project", "--hostname=0.0.0.0" , "--no-cluster" ] 
