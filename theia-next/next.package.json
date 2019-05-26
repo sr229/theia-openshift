@@ -25,7 +25,6 @@
         "@theia/mini-browser": "next",
         "@theia/monaco": "next",
         "@theia/navigator": "next",
-        "@theia/outline-view": "next",
         "@theia/output": "next",
         "@theia/preferences": "next",
         "@theia/plugin": "next",
